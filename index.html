@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App JuegoLibro</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black flex justify-center scroll-smooth bg-zinc-950 text-white font-sans">
+
+  <main class="w-full max-w-7xl p-4 mx-auto">
+    
+    <!-- TITLE -->
+    <section id="title" class="flex flex-col sm:flex-row justify-between items-center gap-2 mb-4">
+      <h1 class="text-orange-600 text-3xl font-bold text-center sm:text-left">Adventure Sheet</h1>
+      <div class="flex gap-2">
+        <button id="saveBtn" class="bg-yellow-500 px-4 py-1 rounded font-bold">SAVE</button>
+        <button id="load" class="bg-yellow-500 px-4 py-1 rounded font-bold">LOAD</button>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section id="stats" class="flex flex-col sm:flex-row justify-center items-stretch gap-4 mb-6">
+  
+      <!-- SKILLS -->
+      <div class="bg-zinc-800 border border-gray-500 rounded-xl text-center p-4 flex-1">
+        <h3 class="font-bold mb-2">SKILLS</h3>
+        <input id="statsSkills" type="number" value="5" class="w-16 text-center border-2 border-gray-400 rounded-xl py-1 bg-black text-white" />
+      </div>
+
+      <!-- STAMINA -->
+      <div class="bg-zinc-800 border border-gray-500 rounded-xl text-center p-4 flex-1">
+        <h3 class="font-bold mb-2">STAMINA</h3>
+        <input id="statsStamina" type="number" value="5" class="w-16 text-center border-2 border-gray-400 rounded-xl py-1 bg-black text-white" />
+      </div>
+
+      <!-- LUCK -->
+      <div class="bg-zinc-800 border border-gray-500 rounded-xl text-center p-4 flex-1">
+        <h3 class="font-bold mb-2">LUCK</h3>
+        <input id="statsLuck" type="number" value="5" class="w-16 text-center border-2 border-gray-400 rounded-xl py-1 bg-black text-white" />
+      </div>
+    </section>
+
+    <!-- ITEMS AND EQUIPMENT -->
+    <section id="items" class="bg-zinc-800 border border-gray-500 rounded-xl p-4 mb-6">
+      <h3 class="font-bold text-center mb-4">ITEMS OF EQUIPMENT CARRIED</h3>
+
+      <!-- Lista de ítems -->
+      <ul id="itemList" class="space-y-3">
+        <!-- Items acá -->
+      </ul>
+        
+        <!-- Campo para agregar nuevo ítem -->
+      <div class="mt-4 flex flex-col sm:flex-row items-center gap-2">
+        <input id="itemInput" type="text" placeholder="New item" class="flex-1 px-2 py-1 rounded bg-black border border-gray-400 text-white">
+        <button id="addItemBtn" class="bg-green-800 px-4 py-1 rounded text-sm font-bold">Add</button>
+      </div>
+    </section>
+
+    <!-- TEASURES -->
+    <section id="treasures" class="flex flex-col sm:flex-row justify-center items-stretch gap-4 mb-6">
+    
+      <!-- GOLD -->
+      <div class="bg-zinc-800 border border-gray-500 rounded-xl text-center p-4 flex-1">
+        <h3 class="font-bold mb-2">GOLD</h3>
+        <input id="goldInput" type="number" value="0" class="w-20 text-center border-2 border-gray-400 rounded-xl py-1 bg-black text-white" />
+      </div>
+
+      <!-- PROVISIONS -->
+      <div class="bg-zinc-800 border border-gray-500 rounded-xl text-center p-4 flex-1">
+        <h3 class="font-bold mb-2">PROVISIONS REMAINING</h3>
+        <div id="provisionsCheckboxes" class="w-20 text-center border-2 border-gray-400 rounded-xl py-1 bg-black text-white">
+        <!-- los checkboxes se generan en JS -->
+        </div>
+      </div>
+
+      <!-- JEWELS -->
+      <div class="bg-zinc-800 border border-gray-500 rounded-xl text-center p-4 flex-1">
+        <h3 class="font-bold mb-2">JEWELS</h3>
+        <input id="jewelsInput" type="number" value="0" class="w-20 text-center border-2 border-gray-400 rounded-xl py-1 bg-black text-white" />
+      </div>
+
+    </section>
+
+    <!-- POTIONS -->
+    <section id="potions" class="bg-zinc-800 border border-gray-500 rounded-xl p-4 mb-6">
+      <h3 class="font-bold text-center mb-4">POTIONS</h3>
+
+      <!-- Lista de pociones -->
+      <ul id="potionList" class="space-y-3">
+        <!-- Las pociones aparecerán acá --> 
+      </ul>
+
+      <!-- Agregar nueva poción -->
+      <div class="mt-4 flex flex-col sm:flex-row items-center gap-2">
+        <input id="potionInput" type="text" placeholder="New potion" class="flex-1 px-2 py-1 rounded bg-black border border-gray-400 text-white">
+        <button id="addPotionBtn" class="bg-green-800 px-4 py-1 rounded text-sm font-bold">Add</button>
+      </div>
+    </section>
+
+    <!-- ENCOUNTERS -->
+    <section id="encounters" class="bg-zinc-800 border border-gray-500 rounded-xl p-4 mb-6">
+      <h3 class="font-bold text-center mb-4">ENCOUNTERS</h3>
+
+      <!-- Grilla de tarjetas -->
+      <div id="encounterList" class="flex flex-wrap gap-3 justify-center p-4">
+     
+    
+        <!-- Tarjeta: Agregar encuentro -->
+        <div id="addEncounterBtn" class="cursor-pointer bg-yellow-500 text-black p-2 rounded shadow w-[140px] flex flex-col items-center justify-center hover:bg-yellow-600 transition">
+          <span class="font-bold">Agregar</span>
+          <span class="font-bold">Encuentro</span>
+          <span class="text-xl">+</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACTION BUTONS -->
+    <nav class="sticky bottom-0 z-50 bg-zinc-900 border-t border-gray-700 p-3">
+      <div class="flex flex-wrap items-center justify-between max-w-5xl mx-auto gap-2">
+
+        <!-- Botones de navegación -->
+        <div class="flex gap-2 flex-wrap">
+          <a href="#title" class="bg-zinc-700 hover:bg-zinc-600 text-sm font-semibold px-3 py-2 rounded">STATS</a>
+          <a href="#items" class="bg-zinc-700 hover:bg-zinc-600 text-sm font-semibold px-3 py-2 rounded">ITEMS</a>
+          <a href="#treasures" class="bg-zinc-700 hover:bg-zinc-600 text-sm font-semibold px-3 py-2 rounded">TREASURES</a>
+          <a href="#potions" class="bg-zinc-700 hover:bg-zinc-600 text-sm font-semibold px-3 py-2 rounded">POTIONS</a>
+          <a href="#encounters" class="bg-zinc-700 hover:bg-zinc-600 text-sm font-semibold px-3 py-2 rounded">ENCOUNTERS</a>
+        </div>
+
+        <!-- Animación de Guardado -->
+        <div id="saveSpinner" class="hidden ml-2 w-5 h-5 border-2 border-t-2 border-t-white border-white/30 rounded-full animate-spin"></div>
+
+        <!-- Botón de tirar dados + resultado -->
+        <div class="flex items-center gap-4">
+          
+          <button id="rollDice" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded font-bold text-sm">Tirar Dados</button>
+          <div class="flex gap-2">
+            <div id="dice1" class="w-8 h-8 flex items-center justify-center bg-zinc-800 border border-gray-500 rounded text-white text-sm">–</div>
+            <div id="dice2" class="w-8 h-8 flex items-center justify-center bg-zinc-800 border border-gray-500 rounded text-white text-sm">–</div>
+          </div>
+        </div>
+
+      </div>
+
+    </nav>
+
+  </main>
+  <script src="./code.js"></script>
+</body>
